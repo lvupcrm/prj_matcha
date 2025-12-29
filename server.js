@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const notion = new Client({ auth: (process.env.NOTION_TOKEN || '').trim() });
 
 // 실제 노션 데이터베이스 ID (하드코딩)
 const DB_IDS = {
