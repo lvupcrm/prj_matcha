@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: wellwave-dashboard
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NOTION_TOKEN
+        sync: false
+      - key: PORT
+        value: 10000
