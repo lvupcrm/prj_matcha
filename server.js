@@ -28,7 +28,8 @@ app.get('/api/brands', async (req, res) => {
       sorts: [{ timestamp: 'created_time', direction: 'descending' }]
     });
 
-    const data = response.results.map(page => ({
+    // archived된 페이지 제외
+    const data = response.results.filter(page => !page.archived).map(page => ({
       id: page.id,
       브랜드명: page.properties['브랜드명']?.title?.[0]?.plain_text || '',
       상태: page.properties['상태']?.status?.name || '',
@@ -117,7 +118,8 @@ app.get('/api/influencers', async (req, res) => {
       sorts: [{ property: '생성 일시', direction: 'descending' }]
     });
 
-    const data = response.results.map(page => ({
+    // archived된 페이지 제외
+    const data = response.results.filter(page => !page.archived).map(page => ({
       id: page.id,
       이름: page.properties['이름']?.title?.[0]?.plain_text || '',
       연락처: page.properties['연락처']?.phone_number || '',
@@ -226,7 +228,8 @@ app.get('/api/campaigns', async (req, res) => {
       sorts: [{ property: '캠페인 시작일', direction: 'descending' }]
     });
 
-    const data = response.results.map(page => ({
+    // archived된 페이지 제외
+    const data = response.results.filter(page => !page.archived).map(page => ({
       id: page.id,
       캠페인명: page.properties['캠페인명']?.title?.[0]?.plain_text || '',
       상태: page.properties['상태']?.status?.name || '',
