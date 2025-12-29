@@ -417,6 +417,208 @@
       font-weight: 500;
       color: #333;
     }
+
+    /* 필터 섹션 */
+    .filter-section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .filter-group label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #666;
+    }
+    .filter-group select,
+    .filter-group input {
+      padding: 8px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      min-width: 140px;
+    }
+    .filter-group select:focus,
+    .filter-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .filter-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .period-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .period-btn {
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .period-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+    }
+    .period-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    /* 확장된 통계 카드 */
+    .stats-grid-extended {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card-extended {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .stat-card-extended .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .stat-card-extended .stat-label {
+      font-size: 13px;
+      color: #666;
+    }
+    .stat-card-extended .stat-icon-sm {
+      font-size: 20px;
+    }
+    .stat-card-extended .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1f36;
+      margin-bottom: 8px;
+    }
+    .stat-card-extended .stat-change {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .stat-change.positive { color: #4caf50; }
+    .stat-change.negative { color: #f44336; }
+
+    /* 추이 차트 섹션 */
+    .trend-section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .trend-section .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .trend-section .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+    .trend-charts-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+    .trend-chart-box {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .trend-chart-box h4 {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    /* 탭 네비게이션 */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #f0f0f0;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 12px 24px;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      color: #667eea;
+    }
+    .tab-btn.active {
+      color: #667eea;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #667eea;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* 인사이트 영역 */
+    .insight-box {
+      background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      border-left: 4px solid #667eea;
+    }
+    .insight-box h4 {
+      font-size: 14px;
+      color: #667eea;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .insight-box p {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -450,11 +652,134 @@
         <button class="btn btn-primary" onclick="loadDashboard()">🔄 새로고침</button>
       </div>
 
-      <div class="stats-grid" id="statsGrid">
-        <div class="loading">통계 로딩 중...</div>
+      <!-- 필터 섹션 -->
+      <div class="filter-section">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label>기간</label>
+            <div class="period-buttons">
+              <button class="period-btn active" data-period="7">최근 7일</button>
+              <button class="period-btn" data-period="30">이번 달</button>
+              <button class="period-btn" data-period="last-month">지난 달</button>
+              <button class="period-btn" data-period="custom">직접 선택</button>
+            </div>
+          </div>
+          <div class="filter-group" id="customDateRange" style="display: none;">
+            <label>시작일</label>
+            <input type="date" id="filterStartDate">
+          </div>
+          <div class="filter-group" id="customDateRangeEnd" style="display: none;">
+            <label>종료일</label>
+            <input type="date" id="filterEndDate">
+          </div>
+          <div class="filter-group">
+            <label>브랜드</label>
+            <select id="filterBrand">
+              <option value="">전체 브랜드</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>캠페인</label>
+            <select id="filterCampaign">
+              <option value="">전체 캠페인</option>
+            </select>
+          </div>
+          <div class="filter-buttons">
+            <button class="btn btn-primary btn-sm" onclick="applyFilters()">적용</button>
+            <button class="btn btn-secondary btn-sm" onclick="resetFilters()">초기화</button>
+          </div>
+        </div>
       </div>
 
-      <div class="charts-grid" id="chartsGrid"></div>
+      <!-- 탭 네비게이션 -->
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="overview">개요</button>
+        <button class="tab-btn" data-tab="trends">일별 추이</button>
+        <button class="tab-btn" data-tab="monthly">월간 성과</button>
+        <button class="tab-btn" data-tab="brands">브랜드별 성과</button>
+      </div>
+
+      <!-- 개요 탭 -->
+      <div id="tab-overview" class="tab-content active">
+        <!-- 핵심 지표 요약 카드 -->
+        <div class="stats-grid-extended" id="performanceStats">
+          <div class="loading">통계 로딩 중...</div>
+        </div>
+
+        <!-- 인사이트 영역 -->
+        <div class="insight-box" id="weeklyInsight">
+          <h4>💡 주간 인사이트</h4>
+          <p id="insightText">데이터를 불러오는 중...</p>
+        </div>
+
+        <!-- 기존 통계 그리드 -->
+        <div class="stats-grid" id="statsGrid">
+          <div class="loading">통계 로딩 중...</div>
+        </div>
+
+        <div class="charts-grid" id="chartsGrid"></div>
+      </div>
+
+      <!-- 일별 추이 탭 -->
+      <div id="tab-trends" class="tab-content">
+        <div class="trend-section">
+          <div class="section-header">
+            <h3 class="section-title">📈 최근 7일 성과 추이</h3>
+          </div>
+          <div class="trend-charts-wrapper" id="trendChartsWrapper">
+            <div class="loading">차트 로딩 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 월간 성과 탭 -->
+      <div id="tab-monthly" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>📅 월간 성과 리포트</h3>
+            <div class="filter-group" style="flex-direction: row; gap: 8px;">
+              <select id="monthlyYear">
+                <option value="2025">2025년</option>
+                <option value="2024">2024년</option>
+              </select>
+              <select id="monthlyMonth">
+                <option value="1">1월</option>
+                <option value="2">2월</option>
+                <option value="3">3월</option>
+                <option value="4">4월</option>
+                <option value="5">5월</option>
+                <option value="6">6월</option>
+                <option value="7">7월</option>
+                <option value="8">8월</option>
+                <option value="9">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+              </select>
+              <button class="btn btn-primary btn-sm" onclick="loadMonthlyReport()">조회</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="stats-grid-extended" id="monthlyStats">
+              <div class="loading">월간 데이터 로딩 중...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 브랜드별 성과 탭 -->
+      <div id="tab-brands" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>🏢 브랜드별 성과 현황</h3>
+          </div>
+          <div class="card-body">
+            <div id="brandPerformanceTable">
+              <div class="loading">브랜드 성과 로딩 중...</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 브랜드 관리 -->
@@ -537,6 +862,19 @@
         </div>
         <div class="card-body">
           <div class="stats-grid" id="campaignPerformanceStats">
+            <div class="loading">로딩 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 크리에이터/콘텐츠 리스트 -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h3>👥 참여 크리에이터</h3>
+          <span id="creatorCount" class="badge badge-blue">0명</span>
+        </div>
+        <div class="card-body">
+          <div id="creatorsTable">
             <div class="loading">로딩 중...</div>
           </div>
         </div>
@@ -750,6 +1088,16 @@
   <script>
     const API = '/api';
     let formOptions = null;
+    let currentFilters = {
+      period: '7',
+      startDate: null,
+      endDate: null,
+      brandId: '',
+      campaignId: ''
+    };
+    let trendCharts = {};
+    let brandsData = [];
+    let campaignsData = [];
 
     // 옵션 로드
     async function loadOptions() {
@@ -757,9 +1105,114 @@
         const res = await fetch(`${API}/options`);
         formOptions = await res.json();
         populateFormOptions();
+        await loadFilterOptions();
       } catch (err) {
         console.error('옵션 로드 실패:', err);
       }
+    }
+
+    // 필터 옵션 로드
+    async function loadFilterOptions() {
+      try {
+        const [brandsRes, campaignsRes] = await Promise.all([
+          fetch(`${API}/brands`),
+          fetch(`${API}/campaigns`)
+        ]);
+        brandsData = await brandsRes.json();
+        campaignsData = await campaignsRes.json();
+
+        const brandSelect = document.getElementById('filterBrand');
+        brandSelect.innerHTML = '<option value="">전체 브랜드</option>' +
+          brandsData.map(b => `<option value="${b.id}">${b.브랜드명}</option>`).join('');
+
+        const campaignSelect = document.getElementById('filterCampaign');
+        campaignSelect.innerHTML = '<option value="">전체 캠페인</option>' +
+          campaignsData.map(c => `<option value="${c.id}">${c.캠페인명}</option>`).join('');
+      } catch (err) {
+        console.error('필터 옵션 로드 실패:', err);
+      }
+    }
+
+    // 기간 버튼 이벤트
+    document.querySelectorAll('.period-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilters.period = btn.dataset.period;
+
+        const customStart = document.getElementById('customDateRange');
+        const customEnd = document.getElementById('customDateRangeEnd');
+        if (btn.dataset.period === 'custom') {
+          customStart.style.display = 'flex';
+          customEnd.style.display = 'flex';
+        } else {
+          customStart.style.display = 'none';
+          customEnd.style.display = 'none';
+        }
+      });
+    });
+
+    // 탭 이벤트
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = `tab-${btn.dataset.tab}`;
+        document.getElementById(tabId).classList.add('active');
+
+        // 탭별 데이터 로드
+        if (btn.dataset.tab === 'trends') loadDailyTrends();
+        if (btn.dataset.tab === 'monthly') loadMonthlyReport();
+        if (btn.dataset.tab === 'brands') loadBrandPerformance();
+      });
+    });
+
+    // 필터 적용
+    function applyFilters() {
+      currentFilters.brandId = document.getElementById('filterBrand').value;
+      currentFilters.campaignId = document.getElementById('filterCampaign').value;
+      if (currentFilters.period === 'custom') {
+        currentFilters.startDate = document.getElementById('filterStartDate').value;
+        currentFilters.endDate = document.getElementById('filterEndDate').value;
+      }
+      loadDashboard();
+    }
+
+    // 필터 초기화
+    function resetFilters() {
+      currentFilters = { period: '7', startDate: null, endDate: null, brandId: '', campaignId: '' };
+      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.period-btn[data-period="7"]').classList.add('active');
+      document.getElementById('filterBrand').value = '';
+      document.getElementById('filterCampaign').value = '';
+      document.getElementById('customDateRange').style.display = 'none';
+      document.getElementById('customDateRangeEnd').style.display = 'none';
+      loadDashboard();
+    }
+
+    // 날짜 계산 헬퍼
+    function getDateRange(period) {
+      const today = new Date();
+      let startDate, endDate = today.toISOString().split('T')[0];
+
+      switch (period) {
+        case '7':
+          startDate = new Date(today.setDate(today.getDate() - 7)).toISOString().split('T')[0];
+          break;
+        case '30':
+          startDate = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
+          break;
+        case 'last-month':
+          const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+          startDate = lastMonth.toISOString().split('T')[0];
+          endDate = new Date(today.getFullYear(), today.getMonth(), 0).toISOString().split('T')[0];
+          break;
+        default:
+          startDate = currentFilters.startDate;
+          endDate = currentFilters.endDate;
+      }
+      return { startDate, endDate };
     }
 
     function populateFormOptions() {
@@ -838,11 +1291,88 @@
     async function loadDashboard() {
       const statsGrid = document.getElementById('statsGrid');
       const chartsGrid = document.getElementById('chartsGrid');
+      const performanceStats = document.getElementById('performanceStats');
+      const insightText = document.getElementById('insightText');
 
       try {
-        const res = await fetch(`${API}/dashboard`);
-        const data = await res.json();
+        // 필터 파라미터 구성
+        const { startDate, endDate } = getDateRange(currentFilters.period);
+        const params = new URLSearchParams();
+        if (startDate) params.append('startDate', startDate);
+        if (endDate) params.append('endDate', endDate);
+        if (currentFilters.brandId) params.append('brandId', currentFilters.brandId);
+        if (currentFilters.campaignId) params.append('campaignId', currentFilters.campaignId);
 
+        const [dashboardRes, dailyRes] = await Promise.all([
+          fetch(`${API}/dashboard?${params}`),
+          fetch(`${API}/stats/daily?days=7&campaignId=${currentFilters.campaignId || ''}`)
+        ]);
+
+        const data = await dashboardRes.json();
+        const dailyData = await dailyRes.json();
+
+        // 핵심 성과 지표 카드 (새로운 확장 카드)
+        const summary = dailyData.summary || {};
+        performanceStats.innerHTML = `
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 노출수</span>
+              <span class="stat-icon-sm">👁️</span>
+            </div>
+            <div class="stat-value number">${formatNumber(summary.impressions || 0)}</div>
+            <div class="stat-change ${summary.impressionsChange >= 0 ? 'positive' : 'negative'}">
+              ${summary.impressionsChange >= 0 ? '▲' : '▼'} ${Math.abs(summary.impressionsChange || 0).toFixed(1)}% 전주 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 좋아요</span>
+              <span class="stat-icon-sm">❤️</span>
+            </div>
+            <div class="stat-value number">${formatNumber(summary.likes || 0)}</div>
+            <div class="stat-change ${summary.likesChange >= 0 ? 'positive' : 'negative'}">
+              ${summary.likesChange >= 0 ? '▲' : '▼'} ${Math.abs(summary.likesChange || 0).toFixed(1)}% 전주 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 댓글</span>
+              <span class="stat-icon-sm">💬</span>
+            </div>
+            <div class="stat-value number">${formatNumber(summary.comments || 0)}</div>
+            <div class="stat-change ${summary.commentsChange >= 0 ? 'positive' : 'negative'}">
+              ${summary.commentsChange >= 0 ? '▲' : '▼'} ${Math.abs(summary.commentsChange || 0).toFixed(1)}% 전주 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 공유</span>
+              <span class="stat-icon-sm">🔄</span>
+            </div>
+            <div class="stat-value number">${formatNumber(summary.shares || 0)}</div>
+            <div class="stat-change ${summary.sharesChange >= 0 ? 'positive' : 'negative'}">
+              ${summary.sharesChange >= 0 ? '▲' : '▼'} ${Math.abs(summary.sharesChange || 0).toFixed(1)}% 전주 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 도달</span>
+              <span class="stat-icon-sm">📊</span>
+            </div>
+            <div class="stat-value number">${formatNumber(summary.reach || 0)}</div>
+            <div class="stat-change ${summary.reachChange >= 0 ? 'positive' : 'negative'}">
+              ${summary.reachChange >= 0 ? '▲' : '▼'} ${Math.abs(summary.reachChange || 0).toFixed(1)}% 전주 대비
+            </div>
+          </div>
+        `;
+
+        // 인사이트 텍스트 업데이트
+        const bestMetric = getBestPerformingMetric(summary);
+        insightText.textContent = bestMetric
+          ? `이번 주 ${bestMetric.name}이(가) 전주 대비 ${bestMetric.change.toFixed(1)}% 상승했습니다. 현재 진행 중인 캠페인 ${data.campaigns.byStatus['진행중'] || 0}개 중 성과가 좋은 캠페인을 확인해보세요.`
+          : `현재 ${data.campaigns.total}개의 캠페인이 등록되어 있으며, ${data.campaigns.byStatus['진행중'] || 0}개가 진행 중입니다.`;
+
+        // 기존 통계 그리드
         statsGrid.innerHTML = `
           <div class="stat-card">
             <div class="stat-icon blue">🏢</div>
@@ -907,6 +1437,17 @@
       }
     }
 
+    function getBestPerformingMetric(summary) {
+      const metrics = [
+        { name: '좋아요', change: summary.likesChange || 0 },
+        { name: '댓글', change: summary.commentsChange || 0 },
+        { name: '공유', change: summary.sharesChange || 0 },
+        { name: '도달', change: summary.reachChange || 0 },
+        { name: '노출', change: summary.impressionsChange || 0 }
+      ];
+      return metrics.filter(m => m.change > 0).sort((a, b) => b.change - a.change)[0];
+    }
+
     function createChart(id, data, colors) {
       const ctx = document.getElementById(id);
       if (!ctx || Object.keys(data).length === 0) return;
@@ -926,6 +1467,200 @@
           plugins: { legend: { position: 'bottom' } }
         }
       });
+    }
+
+    // ===================== 일별 추이 =====================
+    async function loadDailyTrends() {
+      const wrapper = document.getElementById('trendChartsWrapper');
+      wrapper.innerHTML = '<div class="loading">차트 로딩 중...</div>';
+
+      try {
+        const res = await fetch(`${API}/stats/daily?days=7&campaignId=${currentFilters.campaignId || ''}`);
+        const data = await res.json();
+        const dailyData = data.dailyData || [];
+
+        if (dailyData.length === 0) {
+          wrapper.innerHTML = '<div class="empty-state">일별 데이터가 없습니다</div>';
+          return;
+        }
+
+        // 기존 차트 정리
+        Object.values(trendCharts).forEach(chart => chart.destroy());
+        trendCharts = {};
+
+        const labels = dailyData.map(d => d.date);
+        const trendConfigs = [
+          { key: 'likes', label: '좋아요', color: '#fa709a', icon: '❤️' },
+          { key: 'comments', label: '댓글', color: '#fee140', icon: '💬' },
+          { key: 'shares', label: '공유', color: '#a8edea', icon: '🔄' },
+          { key: 'mentions', label: '맨션 피드', color: '#667eea', icon: '📢' },
+          { key: 'videoPlays', label: '비디오 재생', color: '#4facfe', icon: '▶️' },
+          { key: 'reach', label: '도달', color: '#43e97b', icon: '📊' }
+        ];
+
+        wrapper.innerHTML = trendConfigs.map((cfg, idx) => `
+          <div class="trend-chart-box">
+            <h4>${cfg.icon} ${cfg.label}</h4>
+            <canvas id="trendChart_${idx}"></canvas>
+          </div>
+        `).join('');
+
+        trendConfigs.forEach((cfg, idx) => {
+          const ctx = document.getElementById(`trendChart_${idx}`);
+          const chartData = dailyData.map(d => d[cfg.key] || 0);
+
+          trendCharts[cfg.key] = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: cfg.label,
+                data: chartData,
+                borderColor: cfg.color,
+                backgroundColor: cfg.color + '20',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointHoverRadius: 6
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { grid: { display: false } },
+                y: { beginAtZero: true, grid: { color: '#f0f0f0' } }
+              }
+            }
+          });
+        });
+      } catch (err) {
+        wrapper.innerHTML = `<div class="empty-state"><h4>로드 실패</h4><p>${err.message}</p></div>`;
+      }
+    }
+
+    // ===================== 월간 성과 =====================
+    async function loadMonthlyReport() {
+      const container = document.getElementById('monthlyStats');
+      container.innerHTML = '<div class="loading">월간 데이터 로딩 중...</div>';
+
+      try {
+        const year = document.getElementById('monthlyYear').value;
+        const month = document.getElementById('monthlyMonth').value;
+        const res = await fetch(`${API}/stats/monthly?year=${year}&month=${month}`);
+        const response = await res.json();
+        const current = response.current || {};
+        const comparison = response.comparison || {};
+
+        container.innerHTML = `
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">월간 총 캠페인</span>
+              <span class="stat-icon-sm">🎯</span>
+            </div>
+            <div class="stat-value number">${current.totalCampaigns || 0}</div>
+            <div class="stat-change positive">
+              ${current.campaigns?.length || 0}개 활성 캠페인
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">월간 총 좋아요</span>
+              <span class="stat-icon-sm">❤️</span>
+            </div>
+            <div class="stat-value number">${formatNumber(current.totalLikes || 0)}</div>
+            <div class="stat-change ${comparison.likesChange >= 0 ? 'positive' : 'negative'}">
+              ${comparison.likesChange >= 0 ? '▲' : '▼'} ${Math.abs(comparison.likesChange || 0).toFixed(1)}% 전월 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">월간 총 댓글</span>
+              <span class="stat-icon-sm">💬</span>
+            </div>
+            <div class="stat-value number">${formatNumber(current.totalComments || 0)}</div>
+            <div class="stat-change ${comparison.commentsChange >= 0 ? 'positive' : 'negative'}">
+              ${comparison.commentsChange >= 0 ? '▲' : '▼'} ${Math.abs(comparison.commentsChange || 0).toFixed(1)}% 전월 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">월간 총 공유</span>
+              <span class="stat-icon-sm">🔄</span>
+            </div>
+            <div class="stat-value number">${formatNumber(current.totalShares || 0)}</div>
+            <div class="stat-change ${comparison.sharesChange >= 0 ? 'positive' : 'negative'}">
+              ${comparison.sharesChange >= 0 ? '▲' : '▼'} ${Math.abs(comparison.sharesChange || 0).toFixed(1)}% 전월 대비
+            </div>
+          </div>
+          <div class="stat-card-extended">
+            <div class="stat-header">
+              <span class="stat-label">총 참여 인원</span>
+              <span class="stat-icon-sm">👥</span>
+            </div>
+            <div class="stat-value number">${current.totalParticipants || 0}명</div>
+            <div class="stat-change positive">
+              ${year}년 ${month}월 기준
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = `<div class="empty-state"><h4>로드 실패</h4><p>${err.message}</p></div>`;
+      }
+    }
+
+    // ===================== 브랜드별 성과 =====================
+    async function loadBrandPerformance() {
+      const container = document.getElementById('brandPerformanceTable');
+      container.innerHTML = '<div class="loading">브랜드 성과 로딩 중...</div>';
+
+      try {
+        const res = await fetch(`${API}/stats/brands`);
+        const response = await res.json();
+        const data = response.brands || [];
+
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h4>브랜드 성과 데이터가 없습니다</h4></div>';
+          return;
+        }
+
+        // 총 인게이지먼트 기준으로 정렬
+        const sortedData = data.sort((a, b) => (b.총인게이지먼트 || 0) - (a.총인게이지먼트 || 0));
+
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>브랜드명</th>
+                <th>상태</th>
+                <th>캠페인 수</th>
+                <th>총 좋아요</th>
+                <th>총 댓글</th>
+                <th>총 공유</th>
+                <th>총 인게이지먼트</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sortedData.map((item, idx) => `
+                <tr>
+                  <td><strong>${idx + 1}</strong></td>
+                  <td><strong>${item.브랜드명}</strong></td>
+                  <td><span class="badge ${getBrandStatusBadge(item.상태)}">${item.상태 || '-'}</span></td>
+                  <td class="number">${item.캠페인수 || 0}</td>
+                  <td class="number">${formatNumber(item.총좋아요수 || 0)}</td>
+                  <td class="number">${formatNumber(item.총댓글수 || 0)}</td>
+                  <td class="number">${formatNumber(item.총공유수 || 0)}</td>
+                  <td class="number"><strong>${formatNumber(item.총인게이지먼트 || 0)}</strong></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (err) {
+        container.innerHTML = `<div class="empty-state"><h4>로드 실패</h4><p>${err.message}</p></div>`;
+      }
     }
 
     // ===================== 브랜드 =====================
@@ -1524,6 +2259,10 @@
           </div>
         `;
 
+        // 크리에이터 리스트
+        const creators = data.creators || [];
+        renderCreatorsTable(creators);
+
         // 일별 인사이트 차트
         renderDailyCharts(dailyData);
 
@@ -1532,6 +2271,66 @@
         performanceStats.innerHTML = '';
         dailyChartsContainer.innerHTML = '';
       }
+    }
+
+    function renderCreatorsTable(creators) {
+      const container = document.getElementById('creatorsTable');
+      const countBadge = document.getElementById('creatorCount');
+
+      countBadge.textContent = `${creators.length}명`;
+
+      if (!creators || creators.length === 0) {
+        container.innerHTML = '<div class="empty-state">참여 크리에이터가 없습니다</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>크리에이터</th>
+              <th>인스타그램</th>
+              <th>포스팅</th>
+              <th>좋아요</th>
+              <th>댓글</th>
+              <th>공유</th>
+              <th>비디오재생</th>
+              <th>도달</th>
+              <th>최근게시일</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${creators.map(c => `
+              <tr>
+                <td><strong>${c.이름}</strong></td>
+                <td>
+                  ${c.콘텐츠목록 && c.콘텐츠목록[0]?.postUrl
+                    ? `<a href="${c.콘텐츠목록[0].postUrl}" target="_blank" style="color: #667eea;">${c.인스타그램}</a>`
+                    : `<span style="color: #667eea;">${c.인스타그램}</span>`
+                  }
+                </td>
+                <td class="number">${c.콘텐츠.포스팅수}</td>
+                <td class="number">${formatNumber(c.콘텐츠.좋아요)}</td>
+                <td class="number">${formatNumber(c.콘텐츠.댓글)}</td>
+                <td class="number">${formatNumber(c.콘텐츠.공유 || 0)}</td>
+                <td class="number">${formatNumber(c.콘텐츠.비디오재생 || 0)}</td>
+                <td class="number">${formatNumber(c.콘텐츠.도달)}</td>
+                <td>${c.최근게시일 ? c.최근게시일.split('T')[0] : (c.등록일 || '-')}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function getCreatorStatusBadge(status) {
+      const map = {
+        '콘텐츠 업로드 완료': 'badge-green',
+        '촬영 진행 중': 'badge-yellow',
+        '제품 수령 완료': 'badge-blue',
+        '계약 완료': 'badge-default'
+      };
+      return map[status] || 'badge-gray';
     }
 
     function renderDailyCharts(dailyData) {
@@ -1549,18 +2348,13 @@
       const labels = dailyData.map(d => d.date);
 
       const chartConfigs = [
-        { key: 'followers_count', label: 'Followers count', color: '#667eea', icon: '👥' },
-        { key: 'follows_count', label: 'Follows count', color: '#764ba2', icon: '➕' },
-        { key: 'media_count', label: 'Media count', color: '#f093fb', icon: '📷' },
-        { key: 'reach', label: 'Reach', color: '#4facfe', icon: '📊' },
-        { key: 'total_interactions', label: 'Total Interactions', color: '#00f2fe', icon: '🔗' },
-        { key: 'accounts_engaged', label: 'Accounts Engaged', color: '#43e97b', icon: '👤' },
-        { key: 'likes', label: 'Likes', color: '#fa709a', icon: '❤️' },
-        { key: 'comments', label: 'Comments', color: '#fee140', icon: '💬' },
-        { key: 'saves', label: 'Saves', color: '#30cfd0', icon: '🔖' },
-        { key: 'shares', label: 'Shares', color: '#a8edea', icon: '🔄' },
-        { key: 'profile_views', label: 'Profile Views', color: '#ff9a9e', icon: '👁️' },
-        { key: 'website_clicks', label: 'Website Clicks', color: '#fbc2eb', icon: '🔗' }
+        { key: 'likes', label: '좋아요', color: '#fa709a', icon: '❤️' },
+        { key: 'comments', label: '댓글 수', color: '#fee140', icon: '💬' },
+        { key: 'shares', label: '공유 수', color: '#a8edea', icon: '🔄' },
+        { key: 'mentions', label: '맨션 피드 수', color: '#667eea', icon: '📢' },
+        { key: 'videoPlays', label: '비디오 재생 수', color: '#4facfe', icon: '▶️' },
+        { key: 'reach', label: '도달', color: '#43e97b', icon: '📊' },
+        { key: 'impressions', label: '노출', color: '#764ba2', icon: '👁️' }
       ];
 
       container.innerHTML = chartConfigs.map((cfg, idx) => `
